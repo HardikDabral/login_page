@@ -1,0 +1,139 @@
+.formContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    color: #2b3a67;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 320px;
+    height: 48px;
+    margin: 20px auto;
+    padding-left: 16px; 
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    display: block;
+    box-sizing: border-box;  /* Added this line */
+}
+
+.button {
+    width: 320px;
+    height: 60px;
+    padding: 16px 24px;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    margin-top: 50px;
+    background-color: #2b3a67;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    box-sizing: border-box;  /* Added this line */
+}
+
+.input:focus {
+    outline: none;
+    border-color: #2b3a67;
+}
+
+.button:hover {
+    background-color: #1e2a4d;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.switchMode {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.switchText {
+    color: #2b3a67;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.switchText:hover {
+    color: #1e2a4d;
+}
+
+
+@media screen and (max-width: 480px) {
+    .formContainer {
+        max-width: 100%;
+        margin-top: 20px;
+        padding: 16px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .input {
+        width: 280px;
+        height: 44px;
+        margin: 12px auto;
+        font-size: 14px;
+    }
+
+    .button {
+        width: 280px;
+        height: 48px;
+        margin-top: 30px;
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .switchText {
+        font-size: 12px;
+    }
+}
+
+
+.errorMessage {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    color: #dc3545;
+    background-color: #ffe6e6;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.successMessage {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    color: #28a745;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
