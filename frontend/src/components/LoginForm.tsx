@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './login.module.css';
 
 const loginSchema = z.object({
@@ -12,9 +12,21 @@ const loginSchema = z.object({
 const LoginForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState({ text: '', isError: false });
-  const { register, handleSubmit, formState: { errors } } = useForm({
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(loginSchema)
   });
+
+  // Add useEffect to handle message timeout
+  useEffect(() => {
+    if (message.text) {
+      const timer = setTimeout(() => {
+        setMessage({ text: '', isError: false });
+      }, 3000); // Message will disappear after 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [message.text]);
 
   const onSubmit = async (data: any) => {
     try {
@@ -37,11 +49,17 @@ const LoginForm = () => {
         throw new Error(result.message || 'Authentication failed');
       }
 
+      console.log('API Response:', result);  // Log the API response
+      console.log('Form data before reset:', data);  // Log form data before reset
+
       setMessage({ 
         text: isLogin ? 'Successfully logged in!' : 'Registration successful!', 
         isError: false 
       });
       localStorage.setItem('token', result.token);
+      reset();
+      
+      console.log('Form reset completed');  // Log after form reset
       
     } catch (error) {
       console.error(`${isLogin ? 'Login' : 'Registration'} failed:`, error);
